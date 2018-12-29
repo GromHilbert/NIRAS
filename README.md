@@ -16,8 +16,10 @@ Welcome to join me! My wechat is 335860828.
 
 NIRAS is released under the MIT-licence.
 
-## to READ
-about ES JPA https://blog.csdn.net/KingBoyWorld/article/details/78654820
+## READing Materials
+1. Spring-data-elasticsearch ：https://docs.spring.io/spring-data/elasticsearch/docs/current/reference/html/ ; https://github.com/spring-projects/spring-data-elasticsearch
+2. AIAS usage of spring-data-elasticsearch reference ：https://www.baeldung.com/spring-data-elasticsearch-tutorial
+
 
 
 [project wiki]: https://github.com/spring-io/sagan/wiki
