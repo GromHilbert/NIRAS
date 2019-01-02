@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //ComponentScan注解默认扫描当前包以及该包下面所有的子包
 @SpringBootApplication
 public class NIRASApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(NIRASApplication.class, args);
     }

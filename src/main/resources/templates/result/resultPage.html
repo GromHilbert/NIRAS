@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="/layout/default">
+<head>
+    <title>NIRAS</title>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <div class="header-search">
+        <div class="aias-container clearfix">
+            <img src="/img/logo-b.png" alt="">
+            <form action="/result/resultPage" method="GET">
+                <input type="text" placeholder="请输入检索内容" name="searchContent"><button type="submit">搜索</button>
+            </form>
+            <ul class="clearfix">
+                <li>
+                    <a href="/">首页</a>
+                </li>
+                <!--<li><a href="#">所有作者</a></li>
+                <li><a href="#">作者分类</a></li>
+                <li><a href="#">排行榜</a></li>-->
+                <li>
+                    <a href="/login">登录</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="aias-container">
+        <div class="resault">
+            <i>为您找到相关结果约<span th:text="${searchedArticlesNum}">0</span>个</i>
+        </div>
+
+        <div class="navbar">
+            <ul class="clearfix">
+                <li class="active"><a href="#" class="zh">综合</a></li>
+                <li><a href="#" class="sj">时间</a></li>
+                <li><a href="#" class="bm">版面</a></li>
+                <li><a href="#" class="fl">分类</a></li>
+                <li><a href="#" class="tc">体裁</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="aias-container">
+        <div class="con clearfix">
+            <div class="aias-con-mes">
+                <ul class="con-mes">
+                    <li  th:each = "article : ${searchResults}">
+                        <h3 class="title">
+                            <a th:href="${'/result/articleResult?articleID='+ article.id + '&searchContent=' + searchContent}"  target="_blank"><span  th:utext="${article.headline}">世界杯是节日，足球是生活</span></a>
+                        </h3>
+                        <div class="art-mes">
+                            <a th:href="${'/author/authorInfo?authorsName='+ article.authors + '&searchContent=' + searchContent}" target="_blank" >作者：<span  th:utext="${article.authors}">姓名</span></a>
+                            <i class="art-respon">责编：<span  th:utext="${article.editors}">责任编辑</span></i>
+                            <i class="art-page">版面：<span  th:utext="${article.sectionName}">版面名字</span></i>
+                            <i class="art-time"><span  th:utext="${article.publicationDate}">时间</span></i>
+                        </div>
+                        <p style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 3;overflow: hidden;"><span  th:utext="${article.body}">正文内容</span></p>
+                        <div class="other">
+                            <a href="#" target="_blank" class="classify">分类：<span  th:utext="${article.category}">分类名字</span></a><a href="#" target="_blank" class="tc">体裁：<span th:utext="${article.type}">体裁名字</span></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+</html>

@@ -5,33 +5,38 @@ import com.w3dai.DataRetrieval.Service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
-import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class SearchController {
 
-    private ElasticsearchRestTemplate elasticsearchRestTemplate;
     private ArticleService articleService;
 
 
     @Autowired
-    SearchController(ElasticsearchRestTemplate elasticsearchRestTemplate, ArticleService articleService){
-        this.elasticsearchRestTemplate = elasticsearchRestTemplate;
+    SearchController(ArticleService articleService){
         this.articleService = articleService;
     }
 
     @RequestMapping("/")
-    @ResponseBody
     public String index(){
-        String nameToFind = "戴斌";
-        Page<Article> articleByAuthorName
-                = articleService.findByAuthors(nameToFind, PageRequest.of(0, 10));
+        return "index";
+    }
 
-        return "Hello, welcome to use NIRAS!";
+    @RequestMapping("/result/resultPage")
+    public String searchAction(@RequestParam(value="searchContent",required = false,defaultValue = "解放军") String searchContent, Model model){
+        Page<Article> searchResults = articleService.findByAuthors(searchContent, PageRequest.of(0, 1000));
+        long searchedArticlesNum = searchResults.getTotalElements();
+
+        model.addAttribute("searchResults", searchResults);
+        model.addAttribute("searchedArticlesNum", searchedArticlesNum);
+
+        return "result/resultPage";
+
     }
 }
 
