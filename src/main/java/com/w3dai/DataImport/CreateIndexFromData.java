@@ -32,7 +32,7 @@ public class CreateIndexFromData {
                 "{\n" +
                         "  \"article\": {\n" +
                         "    \"properties\": {\n" +
-                        "      \"eyebrowTitle\": {\n" +
+                        "      \"kicker\": {\n" +
                         "        \"type\": \"text\",\n" +
                         "        \"index\":\"true\",\n"+
                         "        \"fielddata\":\"true\",\n"+
@@ -40,7 +40,7 @@ public class CreateIndexFromData {
                         "         \"analyzer\": \"hanlp-index\",\n" +
                         "         \"search_analyzer\": \"hanlp-smart\"\n" +
                         "      },\n" +
-                        "      \"mainTitle\": {\n" +
+                        "      \"headline\": {\n" +
                         "        \"type\": \"text\",\n" +
                         "        \"index\":\"true\",\n"+
                         "        \"fielddata\":\"true\",\n"+
@@ -48,7 +48,7 @@ public class CreateIndexFromData {
                         "         \"analyzer\": \"hanlp-index\",\n" +
                         "         \"search_analyzer\": \"hanlp-smart\"\n" +
                         "      },\n" +
-                        "      \"subTitle\": {\n" +
+                        "      \"subHeadline\": {\n" +
                         "        \"type\": \"text\",\n" +
                         "        \"index\":\"true\",\n"+
                         "        \"fielddata\":\"true\",\n"+
@@ -56,7 +56,7 @@ public class CreateIndexFromData {
                         "         \"analyzer\": \"hanlp-index\",\n" +
                         "         \"search_analyzer\": \"hanlp-smart\"\n" +
                         "      },\n" +
-                        "      \"authorsName\": {\n" +
+                        "      \"authors\": {\n" +
                         "        \"type\": \"text\",\n" +
                         "        \"index\":\"true\",\n"+
                         "        \"fielddata\":\"true\",\n"+
@@ -64,7 +64,7 @@ public class CreateIndexFromData {
                         "         \"analyzer\": \"hanlp-smart\",\n" +
                         "         \"search_analyzer\": \"hanlp-smart\"\n" +
                         "      },\n" +
-                        "      \"editorsName\": {\n" +
+                        "      \"editors\": {\n" +
                         "        \"type\": \"text\",\n" +
                         "        \"index\":\"true\",\n"+
                         "        \"fielddata\":\"true\",\n"+
@@ -72,7 +72,7 @@ public class CreateIndexFromData {
                         "         \"analyzer\": \"hanlp-smart\",\n" +
                         "         \"search_analyzer\": \"hanlp-smart\"\n" +
                         "      },\n" +
-                        "      \"pageName\": {\n" +
+                        "      \"sectionName\": {\n" +
                         "        \"type\": \"text\",\n" +
                         "        \"index\":\"true\",\n"+
                         "        \"fielddata\":\"true\"\n"+
@@ -82,7 +82,7 @@ public class CreateIndexFromData {
                         "        \"index\":\"true\",\n"+
                         "        \"fielddata\":\"true\"\n"+
                         "      },\n" +
-                        "      \"paperCategory\": {\n" +
+                        "      \"category\": {\n" +
                         "        \"type\": \"text\",\n" +
                         "        \"index\":\"true\",\n"+
                         "        \"fielddata\":\"true\",\n"+
@@ -90,15 +90,15 @@ public class CreateIndexFromData {
                         "         \"analyzer\": \"hanlp-smart\",\n" +
                         "         \"search_analyzer\": \"hanlp-smart\"\n" +
                         "      },\n" +
-                        "      \"paperType\": {\n" +
+                        "      \"type\": {\n" +
                         "        \"type\": \"text\",\n" +
                         "        \"index\":\"true\"\n"+
                         "      },\n" +
-                        "      \"publishDate\": {\n" +
+                        "      \"publicationDate\": {\n" +
                         "        \"type\": \"date\",\n" +
                         "        \"format\":\"yyyyMMdd\"\n"+
                         "      },\n" +
-                        "      \"articleText\": {\n" +
+                        "      \"body\": {\n" +
                         "        \"type\": \"text\",\n" +
                         "        \"index\":\"true\",\n"+
                         "        \"fielddata\":\"true\",\n"+
