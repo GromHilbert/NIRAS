@@ -12,13 +12,20 @@ import org.springframework.data.elasticsearch.repository.config.EnableElasticsea
 
 @Configuration
 @EnableElasticsearchRepositories(basePackages = "com.w3dai.DataRetrieval.Repositories")
-@ComponentScan(basePackages = { "com.w3dai" })
+@ComponentScan(basePackages = { "com.w3dai.DataRetrieval.Service" })
 public class Config {
     @Bean
-    public ElasticsearchOperations elasticsearchTemplate() {
+    public RestHighLevelClient client(){
         RestHighLevelClient client = new RestHighLevelClient(
                 RestClient.builder(
                         new HttpHost("localhost", 9200, "http")));
-        return new ElasticsearchRestTemplate(client);
+        return  client;
+    }
+
+    @Bean
+    public ElasticsearchOperations elasticsearchRestTemplate() {
+
+        return new ElasticsearchRestTemplate(client());
+
     }
 }
