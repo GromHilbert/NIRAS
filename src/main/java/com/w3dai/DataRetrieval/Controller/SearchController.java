@@ -9,14 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+
 
 @Controller
 public class SearchController {
 
     private ArticleService articleService;
-
-
     @Autowired
     SearchController(ArticleService articleService){
         this.articleService = articleService;
@@ -29,8 +27,10 @@ public class SearchController {
 
     @RequestMapping("/result/resultPage")
     public String searchAction(@RequestParam(value="searchContent",required = false,defaultValue = "解放军") String searchContent, Model model){
-        Page<Article> searchResults = articleService.findByAuthors(searchContent, PageRequest.of(0, 1000));
+        Page<Article> searchResults = articleService.findByAuthors(searchContent, PageRequest.of(0, 20));
+
         long searchedArticlesNum = searchResults.getTotalElements();
+
 
         model.addAttribute("searchResults", searchResults);
         model.addAttribute("searchedArticlesNum", searchedArticlesNum);
