@@ -1,16 +1,19 @@
 package com.w3dai.DataRetrieval.Entity;
 
-import org.springframework.data.elasticsearch.annotations.Document;
+import static org.springframework.data.elasticsearch.annotations.FieldType.*;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.DateFormat;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+
+import java.util.Date;
 
 @Document(indexName = "articles", type = "article")
 public class Article {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
+
     private String kicker;
     private String headline;
     private String subHeadline;
@@ -18,7 +21,10 @@ public class Article {
     private String editors;
     private String sectionName;
     private String category;
-    private String publicationDate;
+
+    @Field(type = Date, format = DateFormat.custom, pattern = "yyyyMMdd")
+    private Date publicationDate;
+
     private String type;
     private String body;
     private String columnName;
@@ -87,11 +93,11 @@ public class Article {
         this.category = category;
     }
 
-    public String getPublicationDate() {
+    public Date getPublicationDate() {
         return publicationDate;
     }
 
-    public void setPublicationDate(String publicationDate) {
+    public void setPublicationDate(Date publicationDate) {
         this.publicationDate = publicationDate;
     }
 

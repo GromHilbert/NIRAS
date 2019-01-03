@@ -5,6 +5,8 @@ import com.w3dai.DataRetrieval.Service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,14 +28,17 @@ public class SearchController {
     }
 
     @RequestMapping("/result/resultPage")
-    public String searchAction(@RequestParam(value="searchContent",required = false,defaultValue = "解放军") String searchContent, Model model){
-        Page<Article> searchResults = articleService.findByAuthors(searchContent, PageRequest.of(0, 20));
+    public String searchAction(@RequestParam(value="searchContent",required = false,defaultValue = "解放军") String searchContent,
+                               @PageableDefault(size = 20) Pageable pageable,
+                               Model model){
+        Page<Article> searchResults = articleService.findByAuthors(searchContent, pageable);
 
         long searchedArticlesNum = searchResults.getTotalElements();
 
 
         model.addAttribute("searchResults", searchResults);
         model.addAttribute("searchedArticlesNum", searchedArticlesNum);
+        model.addAttribute("searchContent", searchContent);
 
         return "result/resultPage";
 
