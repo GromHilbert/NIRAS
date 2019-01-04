@@ -32,6 +32,7 @@ public class SearchController {
                                @PageableDefault(size = 20) Pageable pageable,
                                Model model){
         Page<Article> searchResults = articleService.findByAuthors(searchContent, pageable);
+       // Page<Article> searchResults = articleService.findByPublicationDate(searchContent, pageable);
 
         long searchedArticlesNum = searchResults.getTotalElements();
 

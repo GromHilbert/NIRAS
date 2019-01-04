@@ -1,5 +1,6 @@
 package com.w3dai.DataRetrieval.Entity;
 
+import static org.springframework.data.elasticsearch.annotations.DateFormat.basic_date;
 import static org.springframework.data.elasticsearch.annotations.FieldType.*;
 
 import org.springframework.data.annotation.Id;
@@ -24,7 +25,6 @@ public class Article {
 
     @Field(type = Date, format = DateFormat.custom, pattern = "yyyyMMdd")
     private Date publicationDate;
-
     private String type;
     private String body;
     private String columnName;

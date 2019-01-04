@@ -18,4 +18,9 @@ public class ArticleServiceImpl implements ArticleService {
         return articleRepository.findByAuthors(name, pageable);
     }
 
+    @Override
+    public Page<Article> findByPublicationDate(String name, Pageable pageable) {
+        return articleRepository.findByPublicationDate(name, pageable);
+    }
+
 }
