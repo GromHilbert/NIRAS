@@ -96,7 +96,7 @@ public class CreateIndexFromData {
                         "      },\n" +
                         "      \"publicationDate\": {\n" +
                         "        \"type\": \"date\",\n" +
-                        "        \"format\":\"yyyyMMdd\"\n"+
+                        "        \"format\":\"basic_date\"\n"+
                         "      },\n" +
                         "      \"body\": {\n" +
                         "        \"type\": \"text\",\n" +

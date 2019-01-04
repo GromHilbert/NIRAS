@@ -23,8 +23,8 @@ public class Article {
     private String sectionName;
     private String category;
 
-    @Field(type = Date, format = DateFormat.custom, pattern = "yyyyMMdd")
-    private Date publicationDate;
+   // @Field(type = Date, format = DateFormat.basic_date)
+    private String publicationDate;
     private String type;
     private String body;
     private String columnName;
@@ -93,11 +93,11 @@ public class Article {
         this.category = category;
     }
 
-    public Date getPublicationDate() {
+    public String getPublicationDate() {
         return publicationDate;
     }
 
-    public void setPublicationDate(Date publicationDate) {
+    public void setPublicationDate(String publicationDate) {
         this.publicationDate = publicationDate;
     }
 

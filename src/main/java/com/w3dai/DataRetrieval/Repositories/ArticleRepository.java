@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ArticleRepository extends ElasticsearchRepository<Article, String> {
     Page<Article> findByAuthors(String name, Pageable pageable);
-    Page<Article> findByPublicationDate(String searchContent, Pageable pageable);
+    Page<Article> findByAuthorsOrderByPublicationDateDesc(String searchContent, Pageable pageable);
 }

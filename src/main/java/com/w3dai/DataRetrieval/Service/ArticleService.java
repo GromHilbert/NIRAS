@@ -8,6 +8,6 @@ public interface ArticleService {
 
     Page<Article> findByAuthors(String name, Pageable pageable);
 
-    Page<Article> findByPublicationDate(String searchContent, Pageable pageable);
+    Page<Article> findByAuthorsOrderByPublicationDateDesc(String searchContent, Pageable pageable);
 
 }

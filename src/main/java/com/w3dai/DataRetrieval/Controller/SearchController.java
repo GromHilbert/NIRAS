@@ -31,8 +31,8 @@ public class SearchController {
     public String searchAction(@RequestParam(value="searchContent",required = false,defaultValue = "解放军") String searchContent,
                                @PageableDefault(size = 20) Pageable pageable,
                                Model model){
-        Page<Article> searchResults = articleService.findByAuthors(searchContent, pageable);
-       // Page<Article> searchResults = articleService.findByPublicationDate(searchContent, pageable);
+        //Page<Article> searchResults = articleService.findByAuthors(searchContent, pageable);
+       Page<Article> searchResults = articleService.findByAuthorsOrderByPublicationDateDesc(searchContent, pageable);
 
         long searchedArticlesNum = searchResults.getTotalElements();
 
