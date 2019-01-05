@@ -4,6 +4,12 @@
 Welcome！By the fast development of software and skills to plan, collect, and release news, the number of news content has been dramatically increased. How to obtain useful and suitable information from these big data means a lot not only for the readers but also for the authors who may rely heavily on historical news materials to generate comprehensive news.The core is WE NEED A SEARCH ENGINE。Despite the emergence of a number of commercial products in the industry, problems such as high fees and difficult customization have limited the further optimization of search services. The goal of the project is to build an open source, free and practical news information retrieval and analysis system (NIRAS) based on open source systems, which can meet the retrieval needs of news product production and explore a new way for news information retrieval.
 
 ## Getting started
+1. JDK 1.8
+2. Spring Boot 2.1.1 & gradle
+3. Elasticsearch 6.5.3 (with HanLP plugin installed)
+4. Intellij IDEA(recommended)
+
+With the above software ready, run Elasticsearch 6.5.3 then BuildMappingAndImportData. Lastly, run NIRASApplication. Open your favourite browser, open our application by inputting "localhost:8080", then please enjoy it.
 
 ## Q&A and issue tracking
 
