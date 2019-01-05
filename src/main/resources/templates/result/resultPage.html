@@ -67,18 +67,18 @@
                 </ul>
             </div>
         </div>
-        <div class="pagination">
+        <div class="pagination" th:if="${searchResults.size > 0}">
             <span th:if="${searchResults.hasPrevious()}">
                 <a th:href="@{/result/resultPage(page=${searchResults.number - 1},size=${searchResults.size}, searchContent= ${searchContent})}">Previous</a>
             </span>
-                    <th:block th:each="i: ${#numbers.sequence(0, searchResults.totalPages - 1)}">
-                        <span th:if="${searchResults.number == i}" class="selected">[[${i}+1]]</span>
-                        <span th:unless="${searchResults.number == i}">
-                     <a th:href="@{/result/resultPage(page=${i},size=${searchResults.size}, searchContent= ${searchContent})}">[[${i}+1]]</a>
+            <th:block th:each="i: ${#numbers.sequence(0, searchResults.totalPages - 1)}">
+                <span th:if="${searchResults.number == i}" class="selected">[[${i}+1]]</span>
+                <span th:unless="${searchResults.number == i}">
+                <a th:href="@{/result/resultPage(page=${i},size=${searchResults.size}, searchContent= ${searchContent})}">[[${i}+1]]</a>
                 </span>
-                    </th:block>
-                    <span th:if="${searchResults.hasNext()}">
-                <a th:href="@{/result/resultPage(page=${searchResults.number+1},size=${searchResults.size}, searchContent= ${searchContent})}">Next</a>
+            </th:block>
+            <span th:if="${searchResults.hasNext()}">
+            <a th:href="@{/result/resultPage(page=${searchResults.number+1},size=${searchResults.size}, searchContent= ${searchContent})}">Next</a>
             </span>
         </div>
 
