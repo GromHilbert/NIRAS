@@ -7,6 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
@@ -26,6 +28,11 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public Page<Article> findByBody(String searchContent, Pageable pageable) {
         return articleRepository.findByBody(searchContent, pageable);
+    }
+
+    @Override
+    public Optional<Article> findById(String articleID) {
+        return articleRepository.findById(articleID);
     }
 
 }

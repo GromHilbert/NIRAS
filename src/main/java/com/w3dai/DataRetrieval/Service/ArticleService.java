@@ -4,6 +4,8 @@ import com.w3dai.DataRetrieval.Entity.Article;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.Optional;
+
 public interface ArticleService {
 
     Page<Article> findByAuthors(String name, Pageable pageable);
@@ -11,5 +13,7 @@ public interface ArticleService {
     Page<Article> findByAuthorsOrderByPublicationDateDesc(String searchContent, Pageable pageable);
 
     Page<Article> findByBody(String name, Pageable pageable);
+
+    Optional<Article> findById(String articleID);
 
 }

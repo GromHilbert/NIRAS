@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="/layout/default">
+<head>
+    <title>NIRAS</title>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <div class="header-wznr">
+        <div class="aias-container clearfix">
+            <div class="logo">
+                <a href="#"><img src="/img/logo-l.png" alt=""></a>
+            </div>
+            <ul class="clearfix">
+                <li><a href="/">首页</a></li>
+                <!--<li><a href="#">所有作者</a></li>
+                <li><a href="#">作者分类</a></li>
+                <li><a href="#">排行榜</a></li>-->
+            </ul>
+            <form action="/result/showResultPage" method="GET" class="search">
+                <input type="text" class="sub" placeholder="请输入检索内容" name="searchContent"><button type="submit">搜索</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="aias-container">
+        <!--面包屑导航-->
+        <div class="aias-breadcrumb">
+            <a href="#">检索结果</a>
+            <i>></i>
+            <a href="#">内容</a>
+        </div>
+        <div class="content">
+            <h3 class="title">
+                <span  th:utext="${article.headline}">标题</span>
+            </h3>
+            <div class="source">
+                <i>作者：<span   th:text="${article.authors}?:'解放军报'">作者</span></i>
+                <i>日期：<span   th:text="${article.publicationDate}">日期</span></i>
+            </div>
+            <!--文章内容-->
+            <div class="con">
+                <p  th:utext="${#strings.replace(article.body, T(org.apache.commons.lang3.StringUtils).LF, '&lt;br /&gt;&lt;br /&gt;')}">全文</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
