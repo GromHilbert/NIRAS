@@ -8,20 +8,23 @@
 
 <body>
 <div layout:fragment="content">
-    <div class="header-wznr">
+    <div class="header-search">
         <div class="aias-container clearfix">
-            <div class="logo">
-                <a href="#"><img src="/img/logo-l.png" alt=""></a>
-            </div>
+            <img src="/img/logo-b.png" alt="">
+            <form action="/result/resultPage" method="GET">
+                <input type="text" placeholder="请输入检索内容" name="searchContent"><button type="submit">搜索</button>
+            </form>
             <ul class="clearfix">
-                <li><a href="/">首页</a></li>
+                <li>
+                    <a href="/">首页</a>
+                </li>
                 <!--<li><a href="#">所有作者</a></li>
                 <li><a href="#">作者分类</a></li>
                 <li><a href="#">排行榜</a></li>-->
+                <li>
+                    <a href="/login">登录</a>
+                </li>
             </ul>
-            <form action="/result/showResultPage" method="GET" class="search">
-                <input type="text" class="sub" placeholder="请输入检索内容" name="searchContent"><button type="submit">搜索</button>
-            </form>
         </div>
     </div>
 

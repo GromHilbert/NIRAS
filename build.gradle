@@ -49,6 +49,10 @@ dependencies {
     compile group: 'javax.persistence', name: 'persistence-api', version: '1.0.2'
     compile group: 'org.elasticsearch', name: 'elasticsearch', version: '6.5.3'
     compile group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '2.3.0'
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.8.1'
+
+
 
 
 
