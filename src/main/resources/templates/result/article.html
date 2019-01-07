@@ -43,6 +43,8 @@
                 <i>作者：<span   th:text="${article.authors}?:'解放军报'">作者</span></i>
                 <i>日期：<span   th:text="${article.publicationDate}">日期</span></i>
             </div>
+            <p>关键词：<span   th:text="${keywordList}">关键词</span></p>
+            <p>摘要：<span   th:text="${articleSummary}">摘要</span></p>
             <!--文章内容-->
             <div class="con">
                 <p  th:utext="${#strings.replace(article.body, T(org.apache.commons.lang3.StringUtils).LF, '&lt;br /&gt;&lt;br /&gt;')}">全文</p>

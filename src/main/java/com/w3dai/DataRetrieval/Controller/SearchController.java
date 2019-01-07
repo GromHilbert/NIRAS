@@ -65,7 +65,12 @@ public class SearchController {
                                 Model model)
     {
         Optional<Article> getArticle = articleService.findById(articleID);
+        List<String> articleSummary = HanLP.extractSummary(getArticle.get().getBody(), 5);
+        List<String> keywordList = HanLP.extractKeyword(getArticle.get().getBody(), 5);
+
         model.addAttribute("article", getArticle.get());
+        model.addAttribute("articleSummary", articleSummary.toString());
+        model.addAttribute("keywordList", keywordList.toString());
 
         return "result/article";
     }
