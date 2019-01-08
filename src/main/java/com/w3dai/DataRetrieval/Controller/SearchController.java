@@ -46,7 +46,8 @@ public class SearchController {
         List<Article> tempArticleList = searchResults.getContent();
         for(Article articleBody : tempArticleList){
             for(Term searchWord : testA) {
-                articleBody.setBody(articleBody.getBody().replace(searchWord.toString(), "<font color=\"red\">"+searchWord+"</font>"));
+                if(searchWord.length()>1)
+                    articleBody.setBody(articleBody.getBody().replace(searchWord.toString(), "<font color=\"red\">"+searchWord+"</font>"));
             }
         }
 
