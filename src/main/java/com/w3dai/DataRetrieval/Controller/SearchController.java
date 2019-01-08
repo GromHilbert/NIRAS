@@ -39,6 +39,8 @@ public class SearchController {
                                Model model){
         List<Term> testA = HanLP.segment(searchContent);
 
+        String passedSearchContent = searchContent.trim();
+
         searchContent = QueryParser.escape(searchContent.trim().replace(" ","/"));
 
         /*Another stupid way to highlight the searching keywords*/
@@ -57,7 +59,7 @@ public class SearchController {
         model.addAttribute("articleList", tempArticleList);
         model.addAttribute("searchResults", searchResults);
         model.addAttribute("searchedArticlesNum", searchedArticlesNum);
-        model.addAttribute("searchContent", searchContent);
+        model.addAttribute("searchContent", passedSearchContent);
 
         return "result/resultPage";
     }
