@@ -67,24 +67,25 @@
                 </ul>
             </div>
         </div>
-        <div class="pagination" th:if="${searchedArticlesNum} gt '0'">
-            <span th:if="${searchResults.hasPrevious()}">
-                <a th:href="@{/result/resultPage(page=${searchResults.number - 1},size=${searchResults.size}, searchContent= ${searchContent}, timeOrder=${timeOrder})}">Previous</a>
-            </span>
 
-            <th:block th:each="i: ${#numbers.sequence(0, searchResults.totalPages - 1)}">
-                <span th:if="${searchResults.number == i}" class="selected">[[${i}+1]]</span>
-                <span th:unless="${searchResults.number == i}">
-                <a th:href="@{/result/resultPage(page=${i},size=${searchResults.size}, searchContent= ${searchContent}, timeOrder=${timeOrder})}">[[${i}+1]]</a>
-                </span>
-            </th:block>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination" th:if="${searchResults.totalPages} gt '0'">
+                <li th:if="${searchResults.hasPrevious()}">
+                    <a th:href="@{/result/resultPage(page=${searchResults.number - 1},size=${searchResults.size}, searchContent= ${searchContent}, timeOrder=${timeOrder})}">Previous</a>
+                </li>
 
-            <span th:if="${searchResults.hasNext()}">
-                <a th:href="@{/result/resultPage(page=${searchResults.number+1},size=${searchResults.size}, searchContent= ${searchContent}, timeOrder=${timeOrder})}">Next</a>
-            </span>
-        </div>
+                <th:block th:each="i: ${#numbers.sequence(0, searchResults.totalPages - 1)}">
+                        <li class="active" th:if="${searchResults.number == i}"><span>[[${i}+1]]<span class="sr-only">(current)</span></span></li>
+                        <li th:unless="${searchResults.number == i}">
+                            <a th:href="@{/result/resultPage(page=${i},size=${searchResults.size}, searchContent= ${searchContent}, timeOrder=${timeOrder})}">[[${i}+1]]</a>
+                        </li>
+                </th:block>
 
-
+                <li th:if="${searchResults.hasNext()}">
+                    <a th:href="@{/result/resultPage(page=${searchResults.number+1},size=${searchResults.size}, searchContent= ${searchContent}, timeOrder=${timeOrder})}">Next</a>
+                </li>
+            </ul>
+        </nav>
     </div>
 </div>
 
