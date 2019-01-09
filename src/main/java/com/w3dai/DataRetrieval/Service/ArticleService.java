@@ -10,7 +10,7 @@ public interface ArticleService {
 
     Page<Article> findByAuthors(String name, Pageable pageable);
 
-    Page<Article> findByAuthorsOrderByPublicationDateDesc(String searchContent, Pageable pageable);
+    Page<Article> findByBodyOrderByPublicationDateDesc(String searchContent, Pageable pageable);
 
     Page<Article> findByBody(String name, Pageable pageable);
 

@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface ArticleRepository extends ElasticsearchRepository<Article, String> {
     Page<Article> findByAuthors(String name, Pageable pageable);
-    Page<Article> findByAuthorsOrderByPublicationDateDesc(String searchContent, Pageable pageable);
+    Page<Article> findByBodyOrderByPublicationDateDesc(String searchContent, Pageable pageable);
     Page<Article> findByBody(String name, Pageable pageable);
 }

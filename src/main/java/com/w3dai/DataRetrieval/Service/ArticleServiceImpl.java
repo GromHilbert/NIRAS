@@ -21,8 +21,8 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Page<Article> findByAuthorsOrderByPublicationDateDesc(String name, Pageable pageable) {
-        return articleRepository.findByAuthorsOrderByPublicationDateDesc(name, pageable);
+    public Page<Article> findByBodyOrderByPublicationDateDesc(String name, Pageable pageable) {
+        return articleRepository.findByBodyOrderByPublicationDateDesc(name, pageable);
     }
 
     @Override

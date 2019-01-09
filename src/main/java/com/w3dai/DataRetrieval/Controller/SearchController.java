@@ -35,6 +35,7 @@ public class SearchController {
 
     @RequestMapping("/result/resultPage")
     public String searchAction(@RequestParam(value="searchContent",required = false,defaultValue = "解放军") String searchContent,
+                               @RequestParam(value="timeOrder", required = false,defaultValue = "") String timeOrder,
                                @PageableDefault(size = 20) Pageable pageable,
                                Model model){
         List<Term> testA = HanLP.segment(searchContent);
@@ -43,8 +44,14 @@ public class SearchController {
 
         searchContent = QueryParser.escape(searchContent.trim().replace(" ","/"));
 
+
         /*Another stupid way to highlight the searching keywords*/
-        Page<Article> searchResults = articleService.findByBody(searchContent, pageable);
+        Page<Article> searchResults;
+        if(timeOrder.length() > 0)
+            searchResults = articleService.findByBodyOrderByPublicationDateDesc(searchContent, pageable);
+        else
+            searchResults = articleService.findByBody(searchContent, pageable);
+
         List<Article> tempArticleList = searchResults.getContent();
         for(Article articleBody : tempArticleList){
             for(Term searchWord : testA) {
@@ -56,6 +63,7 @@ public class SearchController {
 
         long searchedArticlesNum = searchResults.getTotalElements();
 
+        System.out.println(searchResults.getSize()+"###"+searchResults.getTotalPages());
         model.addAttribute("articleList", tempArticleList);
         model.addAttribute("searchResults", searchResults);
         model.addAttribute("searchedArticlesNum", searchedArticlesNum);
