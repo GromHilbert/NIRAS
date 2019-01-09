@@ -36,7 +36,7 @@
 
         <div class="navbar">
             <ul class="clearfix">
-                <li class="active"><a href="#" class="zh">综合</a></li>
+                <li class="active"><a href="${'resultPage?searchContent=' + searchContent}" class="zh">综合</a></li>
                 <li><a th:href= "${'resultPage?searchContent=' + searchContent + '&timeOrder=desc'}" class="sj">时间</a></li>
                 <li><a href="#" class="bm">版面</a></li>
                 <li><a href="#" class="fl">分类</a></li>
@@ -69,18 +69,18 @@
         </div>
         <div class="pagination" th:if="${searchedArticlesNum} gt '0'">
             <span th:if="${searchResults.hasPrevious()}">
-                <a th:href="@{/result/resultPage(page=${searchResults.number - 1},size=${searchResults.size}, searchContent= ${searchContent})}">Previous</a>
+                <a th:href="@{/result/resultPage(page=${searchResults.number - 1},size=${searchResults.size}, searchContent= ${searchContent}, timeOrder=${timeOrder})}">Previous</a>
             </span>
 
             <th:block th:each="i: ${#numbers.sequence(0, searchResults.totalPages - 1)}">
                 <span th:if="${searchResults.number == i}" class="selected">[[${i}+1]]</span>
                 <span th:unless="${searchResults.number == i}">
-                <a th:href="@{/result/resultPage(page=${i},size=${searchResults.size}, searchContent= ${searchContent})}">[[${i}+1]]</a>
+                <a th:href="@{/result/resultPage(page=${i},size=${searchResults.size}, searchContent= ${searchContent}, timeOrder=${timeOrder})}">[[${i}+1]]</a>
                 </span>
             </th:block>
 
             <span th:if="${searchResults.hasNext()}">
-                <a th:href="@{/result/resultPage(page=${searchResults.number+1},size=${searchResults.size}, searchContent= ${searchContent})}">Next</a>
+                <a th:href="@{/result/resultPage(page=${searchResults.number+1},size=${searchResults.size}, searchContent= ${searchContent}, timeOrder=${timeOrder})}">Next</a>
             </span>
         </div>
 

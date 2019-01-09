@@ -78,6 +78,7 @@ public class Json2es {
 
         BulkProcessor bulkProcessor = builder.build();
 
+        //in future here may add more functions like detecting the new files and import them.
         try {
             File file = new File(filePath);
             if(file.isFile() && file.exists()) {

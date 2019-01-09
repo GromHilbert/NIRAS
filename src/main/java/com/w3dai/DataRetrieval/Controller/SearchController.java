@@ -68,6 +68,7 @@ public class SearchController {
         model.addAttribute("searchResults", searchResults);
         model.addAttribute("searchedArticlesNum", searchedArticlesNum);
         model.addAttribute("searchContent", passedSearchContent);
+        model.addAttribute("timeOrder", timeOrder);
 
         return "result/resultPage";
     }
