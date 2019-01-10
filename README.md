@@ -26,7 +26,7 @@ NIRAS is released under the MIT-licence.
 ## READing Materials
 1. Spring-data-elasticsearch ：https://docs.spring.io/spring-data/elasticsearch/docs/current/reference/html/ ; https://github.com/spring-projects/spring-data-elasticsearch
 2. AIAS usage of spring-data-elasticsearch reference ：https://www.baeldung.com/spring-data-elasticsearch-tutorial
-3. Pagination：https://www.logicbig.com/tutorials/spring-framework/spring-data/pagination-with-thymeleaf.html & https://www.baeldung.com/spring-thymeleaf-pagination & https://v4-alpha.getbootstrap.com/components/pagination/
+3. Pagination：https://www.logicbig.com/tutorials/spring-framework/spring-data/pagination-with-thymeleaf.html & https://www.baeldung.com/spring-thymeleaf-pagination & https://v4-alpha.getbootstrap.com/components/pagination/ & http://www.importnew.com/24722.html
 
 
 

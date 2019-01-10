@@ -36,6 +36,7 @@ public class SearchController {
     @RequestMapping("/result/resultPage")
     public String searchAction(@RequestParam(value="searchContent",required = false,defaultValue = "解放军") String searchContent,
                                @RequestParam(value="timeOrder", required = false,defaultValue = "") String timeOrder,
+                               @RequestParam(value="searchType", required = false,defaultValue = "body") String searchType,
                                @PageableDefault(size = 20) Pageable pageable,
                                Model model){
         List<Term> testA = HanLP.segment(searchContent);
@@ -46,30 +47,36 @@ public class SearchController {
 
 
         /*Another stupid way to highlight the searching keywords*/
-        Page<Article> searchResults;
-        if(timeOrder.length() > 0)
-            searchResults = articleService.findByBodyOrderByPublicationDateDesc(searchContent, pageable);
-        else
-            searchResults = articleService.findByBody(searchContent, pageable);
+        Page<Article> searchResults = null;
+        if(searchType.equals("body"))
+            if(timeOrder.length() > 0)
+                searchResults = articleService.findByBodyOrderByPublicationDateDesc(searchContent, pageable);
+            else
+                searchResults = articleService.findByBody(searchContent, pageable);
+
+        if(searchType.equals("sectionName"))
+            if(timeOrder.length() > 0)
+                searchResults = articleService.findBySectionNameOrderByPublicationDateDesc(searchContent, pageable);
+            else
+                searchResults = articleService.findBySectionName(searchContent, pageable);
 
         List<Article> tempArticleList = searchResults.getContent();
-        for(Article articleBody : tempArticleList){
-            for(Term searchWord : testA) {
-                if(searchWord.length()>1)
-                    articleBody.setBody(articleBody.getBody().replace(searchWord.toString(), "<font color=\"red\">"+searchWord+"</font>"));
+        if(searchType.equals("body"))
+            for(Article articleBody : tempArticleList){
+                for(Term searchWord : testA) {
+                    if(searchWord.length()>1)
+                        articleBody.setBody(articleBody.getBody().replace(searchWord.toString(), "<font color=\"red\">"+searchWord+"</font>"));
+                }
             }
-        }
 
 
         long searchedArticlesNum = searchResults.getTotalElements();
 
-        System.out.println(searchResults.getSize()+"###"+searchResults.getTotalPages());
         model.addAttribute("articleList", tempArticleList);
         model.addAttribute("searchResults", searchResults);
         model.addAttribute("searchedArticlesNum", searchedArticlesNum);
         model.addAttribute("searchContent", passedSearchContent);
-        model.addAttribute("timeOrder", timeOrder);
-
+        model.addAttribute("searchType", searchType);
         return "result/resultPage";
     }
     @RequestMapping("/result/article")

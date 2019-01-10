@@ -31,6 +31,16 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public Page<Article> findBySectionName(String searchContent, Pageable pageable) {
+        return articleRepository.findBySectionName(searchContent, pageable);
+    }
+
+    @Override
+    public Page<Article> findBySectionNameOrderByPublicationDateDesc(String name, Pageable pageable) {
+        return articleRepository.findBySectionNameOrderByPublicationDateDesc(name, pageable);
+    }
+
+    @Override
     public Optional<Article> findById(String articleID) {
         return articleRepository.findById(articleID);
     }

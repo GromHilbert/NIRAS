@@ -16,4 +16,8 @@ public interface ArticleService {
 
     Optional<Article> findById(String articleID);
 
+    Page<Article> findBySectionNameOrderByPublicationDateDesc(String searchContent, Pageable pageable);
+
+    Page<Article> findBySectionName(String name, Pageable pageable);
+
 }

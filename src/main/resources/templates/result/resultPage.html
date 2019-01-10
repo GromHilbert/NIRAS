@@ -36,8 +36,8 @@
 
         <div class="navbar">
             <ul class="clearfix">
-                <li class="active"><a href="${'resultPage?searchContent=' + searchContent}" class="zh">综合</a></li>
-                <li><a th:href= "${'resultPage?searchContent=' + searchContent + '&timeOrder=desc'}" class="sj">时间</a></li>
+                <li class="active"><a th:href="${'resultPage?searchContent=' + searchContent + '&searchType='+ searchType}" class="zh">综合</a></li>
+                <li><a th:href= "${'resultPage?searchContent=' + searchContent + '&timeOrder=desc&searchType='+ searchType}" class="sj">时间</a></li>
                 <li><a href="#" class="bm">版面</a></li>
                 <li><a href="#" class="fl">分类</a></li>
                 <li><a href="#" class="tc">体裁</a></li>
@@ -56,7 +56,7 @@
                         <div class="art-mes">
                             <a th:href="${'/author/authorInfo?authorsName='+ article.authors + '&searchContent=' + searchContent}" target="_blank" >作者：<span  th:utext="${article.authors}">姓名</span></a>
                             <i class="art-respon">责编：<span  th:utext="${article.editors}">责任编辑</span></i>
-                            <i class="art-page">版面：<span  th:utext="${article.sectionName}">版面名字</span></i>
+                            <i class="art-page">版面：<a th:href="${'/result/resultPage?searchContent='+ article.sectionName +'&searchType=sectionName'}"><span  th:utext="${article.sectionName}">版面名字</span></a></i>
                             <i class="art-time">日期：<span  th:utext="${article.publicationDate}">时间</span></i>
                         </div>
                         <p style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 3;overflow: hidden;"><span  th:utext="${article.body}">正文内容</span></p>
@@ -69,7 +69,7 @@
         </div>
 
         <nav aria-label="Page navigation example">
-            <ul class="pagination" th:if="${searchResults.totalPages} gt '0'">
+            <ul class="pagination" th:if="${searchResults.totalPages gt 0 && searchResults.totalPages le 20 }">
                 <li th:if="${searchResults.hasPrevious()}">
                     <a th:href="@{/result/resultPage(page=${searchResults.number - 1},size=${searchResults.size}, searchContent= ${searchContent}, timeOrder=${timeOrder})}">Previous</a>
                 </li>
@@ -79,6 +79,23 @@
                         <li th:unless="${searchResults.number == i}">
                             <a th:href="@{/result/resultPage(page=${i},size=${searchResults.size}, searchContent= ${searchContent}, timeOrder=${timeOrder})}">[[${i}+1]]</a>
                         </li>
+                </th:block>
+
+                <li th:if="${searchResults.hasNext()}">
+                    <a th:href="@{/result/resultPage(page=${searchResults.number+1},size=${searchResults.size}, searchContent= ${searchContent}, timeOrder=${timeOrder})}">Next</a>
+                </li>
+            </ul>
+
+            <ul class="pagination" th:if="${searchResults.totalPages gt 20 }">
+                <li th:if="${searchResults.hasPrevious()}">
+                    <a th:href="@{/result/resultPage(page=${searchResults.number - 1},size=${searchResults.size}, searchContent= ${searchContent}, timeOrder=${timeOrder})}">Previous</a>
+                </li>
+
+                <th:block th:each="i: ${#numbers.sequence(0, 19)}">
+                    <li class="active" th:if="${searchResults.number == i}"><span>[[${i}+1]]<span class="sr-only">(current)</span></span></li>
+                    <li th:unless="${searchResults.number == i}">
+                        <a th:href="@{/result/resultPage(page=${i},size=${searchResults.size}, searchContent= ${searchContent}, timeOrder=${timeOrder})}">[[${i}+1]]</a>
+                    </li>
                 </th:block>
 
                 <li th:if="${searchResults.hasNext()}">

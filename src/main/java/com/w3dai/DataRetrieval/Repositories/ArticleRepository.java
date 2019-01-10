@@ -13,4 +13,7 @@ public interface ArticleRepository extends ElasticsearchRepository<Article, Stri
     Page<Article> findByAuthors(String name, Pageable pageable);
     Page<Article> findByBodyOrderByPublicationDateDesc(String searchContent, Pageable pageable);
     Page<Article> findByBody(String name, Pageable pageable);
+    
+    Page<Article> findBySectionNameOrderByPublicationDateDesc(String searchContent, Pageable pageable);
+    Page<Article> findBySectionName(String name, Pageable pageable);
 }
