@@ -64,7 +64,7 @@ public class SearchController {
         if(searchType.equals("body"))
             for(Article articleBody : tempArticleList){
                 for(Term searchWord : testA) {
-                    if(searchWord.length()>1)
+                    if(searchWord.length() >= 1)
                         articleBody.setBody(articleBody.getBody().replace(searchWord.toString(), "<font color=\"red\">"+searchWord+"</font>"));
                 }
             }
@@ -93,6 +93,7 @@ public class SearchController {
 
         return "result/article";
     }
+
 }
 
 //spend some time to check DispatcherServletAutoConfiguration

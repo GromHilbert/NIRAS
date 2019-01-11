@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="/layout/default">
+<head>
+    <title>NIRAS</title>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <div class="header-search">
+        <div class="aias-container clearfix">
+            <img src="/img/logo-b.png" alt="">
+            <form action="/result/resultPage" method="GET">
+                <input type="text" placeholder="请输入检索内容" name="searchContent"><button type="submit">搜索</button>
+            </form>
+            <ul class="clearfix">
+                <li>
+                    <a href="/">首页</a>
+                </li>
+                <!--<li><a href="#">所有作者</a></li>
+                <li><a href="#">作者分类</a></li>
+                <li><a href="#">排行榜</a></li>-->
+                <li>
+                    <a href="/login">登录</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="aias-container">
+        <!--面包屑导航-->
+        <div class="aias-breadcrumb">
+            <a href="#">检索结果</a>
+            <i>></i>
+            <a href="#">工具列表</a>
+        </div>
+        <div class="content">
+            <!-- 标准的按钮 -->
+            <a class="btn btn-primary" href="/tools/textAnalysis">文本分析</a>
+            <!--
+            提供额外的视觉效果，标识一组按钮中的原始动作
+            <button type="button" class="btn btn-primary">原始按钮</button>
+            <button type="button" class="btn btn-success">成功按钮</button>
+            <button type="button" class="btn btn-info">信息按钮</button>
+            <button type="button" class="btn btn-warning">警告按钮</button>
+            <button type="button" class="btn btn-danger">危险按钮</button>
+            <button type="button" class="btn btn-link">链接按钮</button>
+            -->
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
