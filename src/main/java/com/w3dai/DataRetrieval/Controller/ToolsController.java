@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
-import java.util.List;
+import java.util.*;
 
 
 @Controller
@@ -47,17 +47,61 @@ public class ToolsController {
         List<Term> outputText = HanLP.segment(stringBuilder.toString());
         String outputString = null;
 
+        HashMap<String,Integer> wordFreq = new HashMap<String, Integer>();
+        String segmentedWord = null;
+
         for(Term tmp:outputText){
+            int count = 0;
+            segmentedWord = tmp.toString();
+            if(segmentedWord.length()>=2 && segmentedWord.matches("^[\u4e00-\u9fbb]+$")) {
+                if (wordFreq.get(segmentedWord) == null) {
+                    count = 1;
+                } else {
+                    count = wordFreq.get(segmentedWord).intValue() + 1;
+                }
+                wordFreq.put(tmp.toString(), count);
+            }
+
             if(outputString == null)
-                outputString = tmp.toString();
+                outputString = segmentedWord;
             else
-                outputString = outputString  + '/' + tmp.toString();
+                outputString = outputString  + "/  " + segmentedWord;
         }
+
+
         model.addAttribute("outputString", outputString);
+        model.addAttribute("wordFreq", hashMapSort(wordFreq));
+
         return "tools/textAnalysis";
     }
 
     private static String getFileExtension(String name){
         return name.substring(name.lastIndexOf("."));
+    }
+
+    public static HashMap<String, Integer>  hashMapSort(HashMap<String, Integer> map){
+        //1、按顺序保存map中的元素，使用LinkedList类型
+        List<Map.Entry<String, Integer>> keyList = new LinkedList<Map.Entry<String, Integer>>(map.entrySet());
+        //2、按照自定义的规则排序
+        Collections.sort(keyList, new Comparator<Map.Entry<String, Integer>>() {
+            @Override
+            public int compare(Map.Entry<String, Integer> o1,
+                               Map.Entry<String, Integer> o2) {
+                if(o2.getValue().compareTo(o1.getValue())>0){
+                    return 1;
+                }else if(o2.getValue().compareTo(o1.getValue())<0){
+                    return -1;
+                }  else {
+                    return 0;
+                }
+            }
+
+        });
+        //3、将LinkedList按照排序好的结果，存入到HashMap中
+        HashMap<String,Integer> result=new LinkedHashMap<>();
+        for(Map.Entry<String, Integer> entry:keyList){
+            result.put(entry.getKey(),entry.getValue());
+        }
+        return result;
     }
 }
