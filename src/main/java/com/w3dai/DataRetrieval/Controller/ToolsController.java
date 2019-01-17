@@ -53,6 +53,7 @@ public class ToolsController {
         for(Term tmp:outputText){
             int count = 0;
             segmentedWord = tmp.toString();
+
             if(segmentedWord.length()>=2 && segmentedWord.matches("^[\u4e00-\u9fbb]+$")) {
                 if (wordFreq.get(segmentedWord) == null) {
                     count = 1;

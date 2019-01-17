@@ -8,10 +8,9 @@ import java.util.List;
 public class HanLPTest {
     public static void main(String[] args){
 
-        List<Term> testA = HanLP.segment("张良 海军 空军");
+        List<Term> testA = HanLP.segment("严守一把手机关了");
 
         for(Term tmp:testA){
-            if(tmp.length() > 1)
                 System.out.println(tmp.toString());
         }
     }

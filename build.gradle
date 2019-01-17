@@ -23,7 +23,12 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'war'
 
+war{
+    baseName = 'NIRAS'
+    version = '1.0.0'
+}
 group = 'com.w3dai'
 version = '1.0.0'
 sourceCompatibility = 1.8
@@ -51,11 +56,8 @@ dependencies {
     compile group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '2.3.0'
     // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.8.1'
-
-
-
-
-
+    compile fileTree(dir:'hanLP\\hanlp-1.7.1-release',include:['*.jar'])
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat:1.5.2.RELEASE'
 
     testImplementation('org.springframework.boot:spring-boot-starter-test')
     
