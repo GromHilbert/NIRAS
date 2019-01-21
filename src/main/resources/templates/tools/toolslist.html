@@ -10,19 +10,19 @@
 <div layout:fragment="content">
     <div class="header-search">
         <div class="aias-container clearfix">
-            <img src="/img/logo-b.png" alt="">
-            <form action="/result/resultPage" method="GET">
+            <img th:src="@{/img/logo-b.png}" alt="">
+            <form th:action="@{/result/resultPage}" method="GET">
                 <input type="text" placeholder="请输入检索内容" name="searchContent"><button type="submit">搜索</button>
             </form>
             <ul class="clearfix">
                 <li>
-                    <a href="/">首页</a>
+                    <a th:href="@{/}">首页</a>
                 </li>
                 <!--<li><a href="#">所有作者</a></li>
                 <li><a href="#">作者分类</a></li>
                 <li><a href="#">排行榜</a></li>-->
                 <li>
-                    <a href="/login">登录</a>
+                    <a th:href="@{/login}">登录</a>
                 </li>
             </ul>
         </div>
@@ -37,10 +37,10 @@
         </div>
         <div class="content">
             <!-- 标准的按钮 -->
-            <a class="btn btn-primary" href="/tools/textAnalysis">文本分词</a>
-            <a type="button" class="btn btn-danger" href="/tools/textAnalysis">词频分析</a>
-            <a type="button" class="btn btn-success" href="/tools/textAnalysis">自动摘要</a>
-            <a type="button" class="btn btn-info" href="/tools/textAnalysis">关键字提取</a>
+            <a class="btn btn-primary" th:href="@{/tools/textAnalysis}">文本分词</a>
+            <a type="button" class="btn btn-danger" th:href="@{/tools/textAnalysis}">词频分析</a>
+            <a type="button" class="btn btn-success" th:href="@{/tools/textAnalysis}">自动摘要</a>
+            <a type="button" class="btn btn-info" th:href="@{/tools/textAnalysis}">关键字提取</a>
             <!--
             提供额外的视觉效果，标识一组按钮中的原始动作
             <button type="button" class="btn btn-warning">警告按钮</button>
