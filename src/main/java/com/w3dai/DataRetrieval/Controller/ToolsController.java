@@ -2,9 +2,8 @@ package com.w3dai.DataRetrieval.Controller;
 
 import com.hankcs.hanlp.HanLP;
 import com.hankcs.hanlp.seg.common.Term;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.Resource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +17,9 @@ import java.util.*;
 @Controller
 @RequestMapping("/tools/")
 public class ToolsController {
-    public static final Resource TEMPFILES_DIR = new FileSystemResource("tempFiles");
+
+    Logger logger = LoggerFactory.getLogger(getClass());
+
     @RequestMapping("/")
     public String nirasTools(){
         return "tools/toolslist";
@@ -32,11 +33,9 @@ public class ToolsController {
     @RequestMapping(value = "/textAnalysis", method = RequestMethod.POST)
     public String textAnalysis(MultipartFile file, Model model) throws IOException {
         String filename = file.getOriginalFilename();
-        File tempFile = File.createTempFile("txt", getFileExtension(filename), TEMPFILES_DIR.getFile());
-        try ( InputStream in = file.getInputStream();
-        OutputStream out = new FileOutputStream(tempFile)){
-            IOUtils.copy(in, out);
-        }
+        File tempFile = File.createTempFile("txt", getFileExtension(filename));
+        logger.debug(tempFile.getCanonicalPath());
+        file.transferTo(tempFile);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(tempFile), "utf-8"));
         StringBuilder stringBuilder = new StringBuilder();
         String tempLine;
